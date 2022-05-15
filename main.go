@@ -129,7 +129,7 @@ func (g *Generator) parsePackage(dir string, names []string) error {
 	}
 
 	defs := make(map[*ast.Ident]types.Object)
-	config := types.Config{Importer: importer.For("source", nil)}
+	config := types.Config{Importer: importer.ForCompiler(fset, "source", nil)}
 	info := &types.Info{Defs: defs}
 	if _, err := config.Check(dir, fset, files, info); err != nil {
 		return fmt.Errorf("type-checking package: %v", err)
